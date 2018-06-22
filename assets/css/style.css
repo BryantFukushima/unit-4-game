@@ -5,3 +5,35 @@ body {
 	background-position: bottom;
 	height: 100vh;
 }
+
+.charSelect {
+	border-bottom: 2px dashed black;
+	padding-bottom: 50px;
+}
+
+.char {
+	padding: 10px;
+	height: 100px;
+	width: 100px;
+}
+
+.char:hover {
+	border: 2px solid green;
+	box-shadow: 0 0 10px green;
+}
+
+#a {
+	background: grey;
+}
+
+#b {
+	background: red;
+}
+
+#c {
+	background: green;
+}
+
+#d {
+	background: blue;
+}
