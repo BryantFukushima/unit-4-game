@@ -13,27 +13,14 @@ body {
 
 .char {
 	padding: 10px;
-	height: 100px;
-	width: 100px;
+	text-align: center;
 }
 
-.char:hover {
-	border: 2px solid green;
-	box-shadow: 0 0 10px green;
+.char img:hover {
+	border-bottom: 2px solid green;
+	box-shadow-bottom: 0 0 10px green;
 }
 
-#a {
-	background: grey;
-}
-
-#b {
-	background: red;
-}
-
-#c {
-	background: green;
-}
-
-#d {
-	background: blue;
+.char img {
+	height: 200px;
 }
