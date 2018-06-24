@@ -33,74 +33,104 @@ d.attr('data-alive' , 'yes');
 dHealth.append(d.attr('data-health'));
 
 var menu = $('.menu');
-var actionButton = $('<button>');
+var actionButton = $('.actionButton');
+
+actionButton.hide();
 
 function chosenChar() {
 	if (menu.text() == "Select Character") {
 		$('.player').append($(this));
 		$(this).removeClass('col-3');
-		$(this).addClass('float-left');
 		$(this).addClass('pChar');
 		menu.text('Choose Opponent');
 		$('.pChar').attr('data-alive' , 'player');
-	} else if (menu.text() == "Choose Opponent") {
+		$('.pChar > img').css("height" , "200px");
+		$('.char').css("color", "red");
+		$(this).css("color", "RoyalBlue");
+	} else if (menu.text() == "Choose Opponent" || menu.text() == "Choose New Opponent") {
 		$('.opponent').append($(this));
 		$(this).removeClass('col-3');
-		$(this).addClass('float-right');
 		$(this).addClass('oChar');
-		menu.text('Challengers Awaiting');
+		menu.text('Fight');
 		actionButton.text('Attack');
-		actionButton.addClass('attackButton');
-		$('.actions').append(actionButton);
+		actionButton.show();
+		$('.pChar > img').css("height" , "250px");
+		$('.oChar > img').css("height" , "250px");
+		$('.charSelect > .char').hide();
+		$('.opponent > h2').text('Opponent Pick');
 	}
 
 }
 
 var basePower = 0;
+var drawDead;
+var playerChar = $('.pChar');
+	var oppChar = $('.oChar');
 
 function attackAction() {
 
 	var playerChar = $('.pChar');
 	var oppChar = $('.oChar');
 
-	if (oppChar.attr('data-health') >= 0) {
-	
 	var newPower = basePower + parseInt(playerChar.attr('data-attack'));
 	var pAttack = oppChar.attr('data-health') - newPower;
+
+	if (oppChar.attr('data-health') >= 0) {
+	
 	basePower = newPower;
 	oppChar.attr('data-health' , pAttack);
 
-	$('.oChar > .showHealth').text(oppChar.attr('data-health'));
-
-
-
+	$('.oChar > div > p > .showHealth').text(oppChar.attr('data-health'));
 
 
 	var oCounter = playerChar.attr('data-health') - oppChar.attr('data-counter');
 	playerChar.attr('data-health' , oCounter);
 
-	$('.pChar > .showHealth').text(playerChar.attr('data-health'));
+	$('.pChar > div > p > .showHealth').text(playerChar.attr('data-health'));
 
 	}
+
+	$('.attackPower').text('You dealt ' + newPower + ' damage');
+	$('.counterDamage').text(oppChar.attr('data-counter') + ' damage taken');
+
+
 
 
 	if (oppChar.attr('data-health') <= 0) {
-		oppChar.attr('data-health' , 0)
-		$('.oHealth').text('Health: ' + oppChar.attr('data-health'));
 		oppChar.attr('data-alive' , 'no');
 		oppChar.hide();
+		$('.opponent > h2').text('You Defeated ' + $('.oChar > h3').text());
 		oppChar.removeClass('oChar');
-		menu.text('Choose Opponent');
+		menu.text('Choose New Opponent');
+		$('.charSelect > .char').show();
+		$('.char > img').css("height" , "150px");
+		$('.pChar > img').css("height" , "150px");
+		$('.oChar > img').css("height" , "150px");
+		
 	}
 
 	if (playerChar.attr('data-health') <= 0) {
-		playerChar.attr('data-health' , 0)
-		$('.pHealth').text('Health: ' + playerChar.attr('data-health'));
 		playerChar.hide();
 		playerChar.removeClass('pChar');
 		menu.text('DEFTEATED');
+		$('.player > h2').text('Defeated by ' + $('.oChar > h3').text());
 		actionButton.text('Reset');
 		actionButton.addClass('resetButton');
+		$('.charSelect > .char').show();
+		$('.resetButton').on('click' , function() {
+			location.reload();
+		})
+	}
+
+	if ((playerChar.attr('data-health') <= 0) && (oppChar.attr('data-health') <= 0)) {
+		menu.text('DEFTEATED');
+		actionButton.text('Reset');
+		actionButton.addClass('resetButton');
+		$('.opponent > h2').text('Draw');
+		$('.player > h2').text('Draw');
+		playerChar.show();
+		oppChar.show();
+		$('.charSelect').hide();
 		$('.resetButton').on('click' , function() {
 			location.reload();
 		})
@@ -110,6 +140,7 @@ function attackAction() {
 		menu.text('WINNER!');
 		actionButton.text('Reset');
 		actionButton.addClass('resetButton');
+		$('.pChar > img').css("height" , "300px");
 		$('.resetButton').on('click' , function() {
 			location.reload();
 		})
@@ -123,7 +154,7 @@ function attackAction() {
 $('.char').on('click' , chosenChar);
 
 
-$('.actions').on('click' , attackAction);
+$('.actionButton').on('click' , attackAction);
 
 
 

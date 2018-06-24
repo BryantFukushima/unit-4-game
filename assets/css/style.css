@@ -1,13 +1,17 @@
+body , html {
+	height: 100%;
+}
+
 body {
-	background-image: url('../images/background.jpg');
-	background-size: cover;
+	background: url('../images/background.jpg') no-repeat fixed;
+	background-size: 150%;
+	background-position: center;
 	background-repeat: no-repeat;
-	background-position: bottom;
-	height: 100vh;
+	height: 100%;
 }
 
 .charSelect {
-	border-bottom: 2px dashed black;
+	
 	padding-bottom: 50px;
 }
 
@@ -16,11 +20,36 @@ body {
 	text-align: center;
 }
 
-.char img:hover {
-	border-bottom: 2px solid green;
-	box-shadow-bottom: 0 0 10px green;
+.char:hover {
+	transform: scale(1.25);
+	cursor: pointer;
 }
 
 .char img {
-	height: 200px;
+	height: 150px;
+}
+
+.actions p {
+	margin: 10px;
+}
+
+.pChar:hover, .oChar:hover {
+	transform: scale(1);
+	cursor: default;
+}
+
+.player h2, .opponent h2 {
+	margin: 0 5vw;
+}
+
+.pChar , .oChar {
+	margin: 5vw;
+}
+
+.pChar p , .oChar p {
+	font-size: 30px;
+}
+
+.dead {
+	filter: grayscale(100);
 }

@@ -17,14 +17,14 @@
 
 		<h2 class="text-center menu">Select Character</h2>
 
-		<div class="charSelect row">
-			<div class="char col-3" id="a"><img src="assets/images/en1.png"><div class="showHealth" id="aHealth"></div></div>
-			<div class="char col-3" id="b"><img src="assets/images/he1.png"><div class="showHealth" id="bHealth"></div></div>
-			<div class="char col-3" id="c"><img src="assets/images/en2.png"><div class="showHealth" id="cHealth"></div></div>
-			<div class="char col-3" id="d"><img src="assets/images/he2.png"><div class="showHealth" id="dHealth"></div></div>
+		<div class="charSelect row no-gutters justify-content-center">
+			<div class="char col-3" id="a"><h3>Myotismon</h3><img src="assets/images/en1.png"><div><p>HP: <span class="showHealth" id="aHealth"></span></p></div></div>
+			<div class="char col-3" id="b"><h3>Angemon</h3><img src="assets/images/he1.png"><div><p>HP: <span class="showHealth" id="bHealth"></span></p></div></div>
+			<div class="char col-3" id="c"><h3>Executor</h3><img src="assets/images/en2.png"><div><p>HP: <span class="showHealth" id="cHealth"></span></p></div></div>
+			<div class="char col-3" id="d"><h3>Agumon</h3><img src="assets/images/he2.png"><div><p>HP: <span class="showHealth" id="dHealth"></span></p></div></div>
 		</div>
 
-		<div class="row align-items-center">
+		<div class="row no-gutters align-items-center battleArea">
 
 			<div class="player col-4">
 				<h2>Player Pick</h2>
@@ -32,11 +32,13 @@
 			</div>
 
 			<div class="actions col-4 text-center">
-				
+				<button class="actionButton btn btn-warning"></button>
+				<p class="attackPower"></p>
+				<p class="counterDamage"></p>
 			</div>
 
 
-			<div class="opponent col-4 text-right">
+			<div class="opponent col-4">
 				<h2>Opponent Pick</h2>
 				
 			</div>
