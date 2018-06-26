@@ -75,7 +75,7 @@ function attackAction() {
 	var newPower = basePower + parseInt(playerChar.attr('data-attack'));
 	var pAttack = oppChar.attr('data-health') - newPower;
 
-	if (oppChar.attr('data-health') >= 0) {
+	// if (oppChar.attr('data-health') >= 0) {
 	
 	basePower = newPower;
 	oppChar.attr('data-health' , pAttack);
@@ -88,7 +88,7 @@ function attackAction() {
 
 	$('.pChar > div > p > .showHealth').text(playerChar.attr('data-health'));
 
-	}
+	// }
 
 	$('.attackPower').text('You dealt ' + newPower + ' damage');
 	$('.counterDamage').text(oppChar.attr('data-counter') + ' damage taken');
@@ -96,7 +96,7 @@ function attackAction() {
 
 
 
-	if (oppChar.attr('data-health') <= 0) {
+	if (oppChar.attr('data-health') <= 0 && playerChar.attr('data-health') > 0) {
 		oppChar.attr('data-alive' , 'no');
 		oppChar.hide();
 		$('.opponent > h2').text('You Defeated ' + $('.oChar > h3').text());
@@ -109,7 +109,7 @@ function attackAction() {
 		
 	}
 
-	if (playerChar.attr('data-health') <= 0) {
+	if (playerChar.attr('data-health') <= 0 && oppChar.attr('data-health') > 0 ) {
 		playerChar.hide();
 		playerChar.removeClass('pChar');
 		menu.text('DEFTEATED');
@@ -121,8 +121,13 @@ function attackAction() {
 			location.reload();
 		})
 	}
-
+	var drawLife = 0;
 	if ((playerChar.attr('data-health') <= 0) && (oppChar.attr('data-health') <= 0)) {
+
+		playerChar.attr('data-health' , drawLife);
+		$('.pChar > div > p > .showHealth').text(playerChar.attr('data-health'));
+		oppChar.attr('data-health' , drawLife);
+		$('.oChar > div > p > .showHealth').text(playerChar.attr('data-health'));
 		menu.text('DEFTEATED');
 		actionButton.text('Reset');
 		actionButton.addClass('resetButton');
